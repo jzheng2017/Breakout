@@ -11,6 +11,7 @@ public class Player extends GameObject implements ICollidableWithGameObjects{
 	final int size = 50;
 
     private Breakout world;
+    private IPowerUp powerUp;
 
     public Player(Breakout world) {
         this.height = 30;
@@ -26,7 +27,7 @@ public class Player extends GameObject implements ICollidableWithGameObjects{
         }
         else if (keyCode == world.RIGHT) {
             setDirectionSpeed(90, speed);
-          }
+          }	
        
     }
  
@@ -60,6 +61,10 @@ public class Player extends GameObject implements ICollidableWithGameObjects{
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 	
+	}
+
+	public void setPowerUp(IPowerUp powerUp) {
+		this.powerUp = powerUp;
 	}
 
 }

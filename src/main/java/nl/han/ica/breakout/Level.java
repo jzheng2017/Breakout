@@ -9,7 +9,11 @@ public class Level {
 	public Level(Breakout world) {
 		this.currentLevel = 1;
 		this.world = world;
-		blockSpawner = new BlockSpawner(this.world, this, )
-		blockSpawner.generateBlocks();
+		blockSpawner = new BlockSpawner(world, this, 10, 5 );
+		blockSpawner.generateBlocks();	
+	}
+	
+	public void nextLevel() {
+		currentLevel++;
 	}
 }

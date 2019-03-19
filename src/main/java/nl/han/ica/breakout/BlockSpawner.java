@@ -12,31 +12,66 @@ public class BlockSpawner {
 	private Breakout world;
 	private Level level;
 	Random rnd;
-
+	private ArrayList<IPowerUp> powerups;
+	
 	public BlockSpawner(Breakout world, Level level, int amountVertical, int amountHorizontal) {
 	this.amountVertical = amountVertical;
 	this.amountHorizontal = amountHorizontal;
 	this.world = world;
 	this.level = level;
-	this.height = world.height / 2;
+	this.height = ((world.height - (blockSpawnerMargin * 2)) / 2);
 	this.width = (world.width - (blockSpawnerMargin * 2));	
+	initializePowerUps();
 	}
 	
 	//generates the blocks
 	public void generateBlocks() {
-		
-		for (int i = 0; i < amountVertical; i++) {
-			for (int j = 0; j < amountHorizontal; j++) {
-				world.addGameObject(new Block(calculateBlockHeight(), calculateBlockWidth(), ));
+		int x = blockSpawnerMargin;
+		int y = blockSpawnerMargin;
+		int counter = 0;
+		int blockWidth = calculateBlockWidth();
+		int blockHeight = calculateBlockHeight();
+		for (int i = 0; i < amountHorizontal; i++) {
+			
+			for (int j = 0; j < amountVertical; j++) {
+				x +=  blockWidth;
+				counter++;
+				world.addGameObject(new GameBlock(blockHeight, blockWidth, 255,5,5,powerups.get(0)),x,y);
+				System.out.println("Block created!" + counter + " blockHeight " + blockHeight + " BlockWidth " + blockWidth + " BlockspawnerWidth" + world.width );
 			}
+			x = blockSpawnerMargin;
+			y += blockHeight;
 		}
 	}
 	
-	private float calculateBlockWidth() {
-		return (width / amountHorizontal);
+	private void initializePowerUps() {
+		powerups = new ArrayList<IPowerUp>();
+		powerups.add(new BallBoost());
 	}
 	
-	private float calculateBlockHeight() {
-		return (height / amountVertical);
+	
+	
+	private int calculateBlockWidth() {
+		return (int) (width / amountHorizontal);
+	}
+	
+	private int calculateBlockHeight() {
+		return (int) (height / amountVertical);
+	}
+
+	public int getAmountVertical() {
+		return amountVertical;
+	}
+
+	public void setAmountVertical(int amountVertical) {
+		this.amountVertical = amountVertical;
+	}
+
+	public int getAmountHorizontal() {
+		return amountHorizontal;
+	}
+
+	public void setAmountHorizontal(int amountHorizontal) {
+		this.amountHorizontal = amountHorizontal;
 	}
 }

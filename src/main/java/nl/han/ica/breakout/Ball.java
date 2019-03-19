@@ -10,16 +10,16 @@ public class Ball extends GameObject implements ICollidableWithGameObjects{
 	private int x;
 	private int y;
 	private Breakout world;
-	private int speed = 2;
-
+	private int damage = 1;
 	public Ball(Breakout world, int width, int height) {
 		this.width = width;
 		this.height = width;
 		this.world = world;
+		setSpeed(2); //sets this objects speed
 	}
 
 	public void Bounce(GameObject go) {
-		setDirectionSpeed((getAngleFrom(go)+180)%360, speed);
+		setDirectionSpeed((getAngleFrom(go)+180)%360, getSpeed());
 	}
 	
 	public void Bounce() {
@@ -39,7 +39,7 @@ public class Ball extends GameObject implements ICollidableWithGameObjects{
             Bounce();
         }
         if (getY() >= world.height+ height) {
- System.out.println("Lost");
+        	System.out.println("Lost");
         }
 	}
 
@@ -52,11 +52,19 @@ public class Ball extends GameObject implements ICollidableWithGameObjects{
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for (GameObject g : collidedGameObjects) {
-              if (g instanceof Player) {
+              if (g instanceof Player || g instanceof Block) {
             	Bounce(g);
             	System.out.println("Collision!");
           }         
       }
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 
 }

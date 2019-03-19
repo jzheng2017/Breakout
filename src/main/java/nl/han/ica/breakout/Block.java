@@ -1,23 +1,23 @@
 package nl.han.ica.breakout;
 
-import java.util.Random;
+import java.util.List;
 
+import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
-public class Block extends GameObject {
-	private int color;
-	private int value;
-	private int durability;
-	private IPowerUp powerUp;
+public abstract class Block extends GameObject implements ICollidableWithGameObjects {
+	protected int color;
+	protected int value;
+	protected int durability;
+
 	
-	public Block(int height, int width, int color, int value, int durability, IPowerUp powerUp) {
+	public Block(int height, int width, int color, int value, int durability) {
 		this.height = height;
 		this.width = width;
 		this.color = color;
 		this.value = value;
 		this.durability = durability;
-		this.powerUp = powerUp;
 		
 	}
 
@@ -32,7 +32,9 @@ public class Block extends GameObject {
 		g.fill(color);
 		g.rect(getX(), getY(), width, height);
 	}
-	
-	
+
+	@Override
+	public abstract void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects);
+		
 
 }
