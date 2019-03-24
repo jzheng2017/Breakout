@@ -10,51 +10,60 @@ public class BlockSpawner {
 	private int amountVertical;
 	private int amountHorizontal;
 	private Breakout world;
-	private Level level;
 	Random rnd;
 	private ArrayList<IPowerUp> powerups;
-	
-	public BlockSpawner(Breakout world, Level level, int amountVertical, int amountHorizontal) {
-	this.amountVertical = amountVertical;
-	this.amountHorizontal = amountHorizontal;
-	this.world = world;
-	this.level = level;
-	this.height = ((world.height - (blockSpawnerMargin * 2)) / 2);
-	this.width = (world.width - (blockSpawnerMargin * 2));	
-	initializePowerUps();
+
+	public BlockSpawner(Breakout world, int amountVertical, int amountHorizontal) {
+		this.amountVertical = amountVertical;
+		this.amountHorizontal = amountHorizontal;
+		this.world = world;
+		this.height = ((world.height - (blockSpawnerMargin * 2)) / 2);
+		this.width = (world.width - (blockSpawnerMargin * 2));
+		initializePowerUps();
 	}
-	
-	//generates the blocks
+
+	// generates the blocks
 	public void generateBlocks() {
 		int x = blockSpawnerMargin;
 		int y = blockSpawnerMargin;
-		int counter = 0;
+		int color = 255;
+		int value = 5;
+		int health = 1;
+		int blocksCreated = 0;
 		int blockWidth = calculateBlockWidth();
 		int blockHeight = calculateBlockHeight();
-		for (int i = 0; i < amountHorizontal; i++) {
-			
-			for (int j = 0; j < amountVertical; j++) {
-				x +=  blockWidth;
-				counter++;
-				world.addGameObject(new GameBlock(blockHeight, blockWidth, 255,5,5,powerups.get(0)),x,y);
-				System.out.println("Block created!" + counter + " blockHeight " + blockHeight + " BlockWidth " + blockWidth + " BlockspawnerWidth" + world.width );
+		for (int i = 0; i < amountVertical; i++) {
+			for (int j = 0; j < amountHorizontal; j++) {
+				blocksCreated++;
+				world.addGameObject(new GameBlock(blockHeight, blockWidth, color, value, health, powerups.get(0), world), x, y);
+				//debug purposes
+				System.out.println("Block created!" + blocksCreated + " blockHeight " + blockHeight + " BlockWidth "
+						+ blockWidth + " BlockspawnerWidth" + world.width);
+				x += blockWidth;
 			}
 			x = blockSpawnerMargin;
 			y += blockHeight;
 		}
+		assignBlocksCountToLevel(blocksCreated);
 	}
-	
+
+	private void assignBlocksCountToLevel(int amount) {
+		this.world.getCurrentLevel().setBlocksLeft(amount);
+	}
+
+	public void endLevel() {
+
+	}
+
 	private void initializePowerUps() {
 		powerups = new ArrayList<IPowerUp>();
 		powerups.add(new BallBoost());
 	}
-	
-	
-	
+
 	private int calculateBlockWidth() {
 		return (int) (width / amountHorizontal);
 	}
-	
+
 	private int calculateBlockHeight() {
 		return (int) (height / amountVertical);
 	}

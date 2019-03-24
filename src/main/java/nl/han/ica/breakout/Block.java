@@ -8,18 +8,10 @@ import processing.core.PGraphics;
 
 public abstract class Block extends GameObject implements ICollidableWithGameObjects {
 	protected int color;
-	protected int value;
-	protected int durability;
+
+	protected int health;
 
 	
-	public Block(int height, int width, int color, int value, int durability) {
-		this.height = height;
-		this.width = width;
-		this.color = color;
-		this.value = value;
-		this.durability = durability;
-		
-	}
 
 	@Override
 	public void update() {

@@ -6,8 +6,10 @@ import nl.han.ica.oopg.objects.GameObject;
 
 public class ObstacleBlock extends Block {
 
-	public ObstacleBlock(int height, int width, int color, int value, int durability) {
-		super(height, width, color, value, durability);
+	public ObstacleBlock(int height, int width, int color, int health) {
+		this.height = height;
+		this.width = width;
+		this.color = color;
 		// TODO Auto-generated constructor stub
 	}
 
