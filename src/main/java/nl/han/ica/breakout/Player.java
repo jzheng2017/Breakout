@@ -8,7 +8,7 @@ import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
 public class Player extends GameObject implements ICollidableWithGameObjects{
-	final int size = 50;
+	//final int size = 50;
 
     private Breakout world;
     private IPowerUp powerUp;

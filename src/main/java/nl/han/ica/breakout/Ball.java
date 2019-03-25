@@ -20,11 +20,11 @@ public class Ball extends GameObject implements ICollidableWithGameObjects {
 	}
 
 	public void Bounce(GameObject go) {
-		setDirectionSpeed((getAngleFrom(go) + 90) % 360, getSpeed());
+		setDirectionSpeed((getAngleFrom(go) + 180) % 360, getSpeed());
 	}
 
 	public void Bounce() {
-		setDirection((getDirection() + 90) % 360);
+		setDirection((getDirection() + 180) % 360);
 	}
 
 	@Override

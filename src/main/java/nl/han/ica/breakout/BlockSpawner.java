@@ -19,6 +19,7 @@ public class BlockSpawner {
 		this.world = world;
 		this.height = ((world.height - (blockSpawnerMargin * 2)) / 2);
 		this.width = (world.width - (blockSpawnerMargin * 2));
+		rnd = new Random();
 		initializePowerUps();
 	}
 
@@ -32,9 +33,12 @@ public class BlockSpawner {
 		int blocksCreated = 0;
 		int blockWidth = calculateBlockWidth();
 		int blockHeight = calculateBlockHeight();
+		final int currentLevel = world.getCurrentLevel().getLevel();
 		for (int i = 0; i < amountVertical; i++) {
 			for (int j = 0; j < amountHorizontal; j++) {
 				blocksCreated++;
+				value = rnd.nextInt(currentLevel+2) + 1;
+				health = rnd.nextInt(value) + 1;
 				world.addGameObject(new GameBlock(blockHeight, blockWidth, color, value, health, powerups.get(0), world), x, y);
 				//debug purposes
 				System.out.println("Block created!" + blocksCreated + " blockHeight " + blockHeight + " BlockWidth "
