@@ -2,15 +2,17 @@ package nl.han.ica.breakout;
 
 import java.util.List;
 import nl.han.ica.oopg.objects.GameObject;
+import processing.core.PGraphics;
 
 public class GameBlock extends Block {
-	private IPowerUp powerUp;
+	private PowerUp powerUp;
 	private Breakout world;
 	private int value;
+	protected final int textColor = 0; //black
 
-	public GameBlock(int height, int width, int color, int value, int health, IPowerUp powerUp, Breakout world) {
-		this.height = height;
-		this.width = width;
+	public GameBlock(int height, int width, int color, int value, int health, PowerUp powerUp, Breakout world) {
+		setHeight(height);
+		setWidth(width);
 		this.color = color;
 		this.value = value;
 		this.health = health;
@@ -44,6 +46,12 @@ public class GameBlock extends Block {
 		}
 	}
 	
+	@Override
+	public void draw(PGraphics g) {
+		super.draw(g);
+		g.fill(textColor);
+		g.text(health, getX() + width / 2, getY() + height / 1.5f);
+	}
 	private void destroyBlock() {
 		world.deleteGameObject(this);
 		assignPointsToLevel();
@@ -62,4 +70,5 @@ public class GameBlock extends Block {
 		health -= damage;
 	}
 
+	
 }

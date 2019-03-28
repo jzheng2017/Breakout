@@ -4,13 +4,16 @@ import java.util.List;
 
 import nl.han.ica.oopg.objects.GameObject;
 
-public class ObstacleBlock extends Block {
+public class PlayerBoost extends PowerUp {
 
-	public ObstacleBlock(int height, int width, int color, int health) {
-		setHeight(height);
-		setWidth(width);
-		this.color = color;
+	public PlayerBoost() {
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void boost() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override

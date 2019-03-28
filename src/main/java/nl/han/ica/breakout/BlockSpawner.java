@@ -11,7 +11,7 @@ public class BlockSpawner {
 	private int amountHorizontal;
 	private Breakout world;
 	Random rnd;
-	private ArrayList<IPowerUp> powerups;
+	private ArrayList<PowerUp> powerups;
 
 	public BlockSpawner(Breakout world, int amountVertical, int amountHorizontal) {
 		this.amountVertical = amountVertical;
@@ -60,7 +60,7 @@ public class BlockSpawner {
 	}
 
 	private void initializePowerUps() {
-		powerups = new ArrayList<IPowerUp>();
+		powerups = new ArrayList<PowerUp>();
 		powerups.add(new BallBoost());
 	}
 

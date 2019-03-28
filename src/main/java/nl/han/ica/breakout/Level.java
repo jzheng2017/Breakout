@@ -3,12 +3,14 @@ package nl.han.ica.breakout;
 public class Level {
 	private Breakout world;
 	private int blocksLeft; //amounts blocks left in the current level
+	private boolean startOfGame;
 	private int level;
 	private int score;
 	private int amountHorizontal;
 	private int amountVertical;
 	public Level(Breakout world, int amountHorizontal, int amountVertical, int level) {
 		this.setLevel(level);
+		this.setStartOfGame(true);
 		this.world = world;
 		this.amountHorizontal = amountHorizontal;
 		this.amountVertical = amountVertical;
@@ -50,6 +52,17 @@ public class Level {
 
 	public int getAmountVertical() {
 		return amountVertical;
+	}
+
+	public boolean isStartOfGame() {
+		return startOfGame;
+	}
+
+	public boolean getStartOfGame() {
+		return startOfGame;
+	}
+	public void setStartOfGame(boolean startOfGame) {
+		this.startOfGame = startOfGame;
 	}
 
 	
