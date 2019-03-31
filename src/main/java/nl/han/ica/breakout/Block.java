@@ -9,18 +9,19 @@ import processing.core.PGraphics;
 public abstract class Block extends GameObject implements ICollidableWithGameObjects {
 	protected int color;
 	protected int health;
-
-	
 	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void draw(PGraphics g) {
 		g.fill(color);
-		g.rect(getX(), getY(), width, height);
+		//g.rect(getX(), getY(), width, height);
+		g.rect(getX(), getY(), getWidth(), getHeight());
+		
 	}
 
 	@Override

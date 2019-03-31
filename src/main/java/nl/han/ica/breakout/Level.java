@@ -9,8 +9,8 @@ public class Level {
 	private int amountHorizontal;
 	private int amountVertical;
 	public Level(Breakout world, int amountHorizontal, int amountVertical, int level) {
-		this.setLevel(level);
-		this.setStartOfGame(true);
+		setLevel(level);
+		setStartOfGame(false);
 		this.world = world;
 		this.amountHorizontal = amountHorizontal;
 		this.amountVertical = amountVertical;

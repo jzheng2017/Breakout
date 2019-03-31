@@ -12,9 +12,10 @@ public class Ball extends GameObject implements ICollidableWithGameObjects {
 	private final int startingSpeed = 3;
 
 	public Ball(Breakout world, int width, int height) {
-		this.width = width;
-		this.height = width;
+		setWidth(width);
+		setHeight(width);
 		this.world = world;
+		setSpeed(3);
 	}
 
 	public void Bounce(GameObject go) {
@@ -44,10 +45,12 @@ public class Ball extends GameObject implements ICollidableWithGameObjects {
 //
 //			Bounce();
 //		}
-//		if (getY() >= world.height + height) {
-//			System.out.println("Lost");
-//			world.getPlayer().decreaseLife();
-//		}
+		if (getY() >= world.getHeight() + getHeight()) {
+			System.out.println("Lost");
+			world.getPlayer().decreaseLife();
+			world.deleteGameObject(this);
+			world.createBall();
+		}
 	}
 	
 	public void resetBall() {
@@ -55,21 +58,22 @@ public class Ball extends GameObject implements ICollidableWithGameObjects {
 	}
 	@Override
 	public void draw(PGraphics g) {
-		if (world.getCurrentLevel().isStartOfGame()) {
-			world.getBall().follow(world.getPlayer());
-		}
+//		if (world.getCurrentLevel().isStartOfGame()) {
+//			world.getBall().follow(world.getPlayer());
+//		}
 		g.fill(255, 0, 0);
-		g.ellipse(getX(), getY(), width, height);
+		g.ellipse(getX(), getY(), getWidth(), getHeight());
 	}
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for (GameObject g : collidedGameObjects) {
 			if (g instanceof Player || g instanceof Block) {
-				if (!world.getCurrentLevel().isStartOfGame()) {
+//				if (!world.getCurrentLevel().isStartOfGame()) {
+//				Bounce();
+//				}
 				Bounce(g);
-				}
-				System.out.println("Collision!");
+				//System.out.println("Collision!");
 			}
 
 		}
@@ -81,21 +85,24 @@ public class Ball extends GameObject implements ICollidableWithGameObjects {
 	 * doesn't work yet
 	 *
 	 */
-	public void follow(GameObject g) {
-
-		setX((int)(g.getX() + (g.getWidth()/2)));
-		setY((int)g.getY());
+//	public void follow(GameObject g) {
+//
+//		setX((int)(g.getX() + (g.getWidth()/2)));
+//		setY((int)g.getY() - this.getHeight() / 2);
+//	
+//	}
 	
-	}
-
+	//returns ball damage
 	public int getDamage() {
 		return damage;
 	}
 
+	//sets ball damage
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
 
+	//returns the starting speed of when the ball was created
 	public int getStartingSpeed() {
 		return startingSpeed;
 	}

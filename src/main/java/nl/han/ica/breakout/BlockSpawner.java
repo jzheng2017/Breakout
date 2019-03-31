@@ -11,19 +11,21 @@ public class BlockSpawner {
 	private int amountHorizontal;
 	private Breakout world;
 	Random rnd;
-	private ArrayList<PowerUp> powerups;
+	//private ArrayList<PowerUp> powerups; //list of the available powerups
 
 	public BlockSpawner(Breakout world, int amountVertical, int amountHorizontal) {
 		this.amountVertical = amountVertical;
 		this.amountHorizontal = amountHorizontal;
 		this.world = world;
-		this.height = ((world.height - (blockSpawnerMargin * 2)) / 2);
-		this.width = (world.width - (blockSpawnerMargin * 2));
+		this.height = ((world.getHeight() - (blockSpawnerMargin * 2)) / 2);
+		this.width = (world.getWidth() - (blockSpawnerMargin * 2));
 		rnd = new Random();
-		initializePowerUps();
+		//initializePowerUps();
 	}
+	
+	
 
-	// generates the blocks
+	// generates the gameblocks (blocks that the player has to destroy to complete the level)
 	public void generateBlocks() {
 		int x = blockSpawnerMargin;
 		int y = blockSpawnerMargin;
@@ -39,7 +41,9 @@ public class BlockSpawner {
 				blocksCreated++;
 				value = rnd.nextInt(currentLevel+2) + 1;
 				health = rnd.nextInt(value) + 1;
-				world.addGameObject(new GameBlock(blockHeight, blockWidth, color, value, health, powerups.get(0), world), x, y);
+				PowerUp p = createPowerUp(rnd.nextBoolean());
+				world.addGameObject(p, x + blockWidth / 2, y + blockHeight / 2);
+				world.addGameObject(new GameBlock(blockHeight, blockWidth, color, value, health, p, world), x, y);
 				//debug purposes
 				System.out.println("Block created!" + blocksCreated + " blockHeight " + blockHeight + " BlockWidth "
 						+ blockWidth + " BlockspawnerWidth" + world.width);
@@ -51,6 +55,7 @@ public class BlockSpawner {
 		assignBlocksCountToLevel(blocksCreated);
 	}
 
+	//sets the amount of blocks left in the current level
 	private void assignBlocksCountToLevel(int amount) {
 		this.world.getCurrentLevel().setBlocksLeft(amount);
 	}
@@ -59,9 +64,16 @@ public class BlockSpawner {
 
 	}
 
-	private void initializePowerUps() {
-		powerups = new ArrayList<PowerUp>();
-		powerups.add(new BallBoost());
+//	private void initializePowerUps() {
+//		powerups = new ArrayList<PowerUp>();
+//		powerups.add();
+//		world.addGameObject(powerups.get(0));
+//		System.out.println(powerups.get(0));
+//	}
+//	
+	 // returns PowerUp object -> parameter boost with the value true gives BallPowerUp, false gives PlayerPowerUp
+	private PowerUp createPowerUp(boolean boost) {
+		return boost ? new BallBoost(30,30, world) : new PlayerBoost(30,30, world);
 	}
 
 	private int calculateBlockWidth() {
@@ -87,4 +99,8 @@ public class BlockSpawner {
 	public void setAmountHorizontal(int amountHorizontal) {
 		this.amountHorizontal = amountHorizontal;
 	}
+	
+//	public ArrayList<PowerUp> getPowerUpList() {
+//		return this.powerups;
+//	}
 }

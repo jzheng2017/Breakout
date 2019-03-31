@@ -18,6 +18,8 @@ public class GameBlock extends Block {
 		this.health = health;
 		this.powerUp = powerUp;
 		this.world = world;
+
+		//setGravity(0.01f);
 	}
 
 	@Override
@@ -31,6 +33,7 @@ public class GameBlock extends Block {
 					updateLevelBlockCountList();
 					System.out.println("Block destroyed!");
 					System.out.println(world.getCurrentLevel().getBlocksLeft());
+					powerUp.drop();
 				}
 			}
 		}
@@ -46,6 +49,7 @@ public class GameBlock extends Block {
 		}
 	}
 	
+	//this function draws gameblock because it's in the gameblock class
 	@Override
 	public void draw(PGraphics g) {
 		super.draw(g);
@@ -69,6 +73,8 @@ public class GameBlock extends Block {
 	public void takeDamage(int damage) {
 		health -= damage;
 	}
+	
+
 
 	
 }

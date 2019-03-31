@@ -26,12 +26,13 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 			setDirectionSpeed(270, speed);
 		} else if (keyCode == world.RIGHT) {
 			setDirectionSpeed(90, speed);
-		} else if (keyCode == world.UP) {
-			if (world.getCurrentLevel().getStartOfGame()) {
-				world.getCurrentLevel().setStartOfGame(false);
-				world.getBall().setSpeed(world.getBall().getStartingSpeed());
-			}
-		}
+		} 
+//		else if (keyCode == world.UP) {
+//			if (world.getCurrentLevel().getStartOfGame()) {
+//				world.getCurrentLevel().setStartOfGame(false);
+//				world.getBall().setSpeed(world.getBall().getStartingSpeed());
+//			}
+//		}
 
 	}
 
@@ -39,7 +40,7 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 	public void draw(PGraphics g) {
 
 		g.fill(255);
-		g.rect(getX(), getY(), this.width, this.height);
+		g.rect(getX(), getY(), getWidth(), getHeight());
 
 	}
 
@@ -53,13 +54,13 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 			setySpeed(0);
 			setY(0);
 		}
-		if (getX() >= world.width - width) {
+		if (getX() >= world.getWidth() - getWidth()) {
 			setxSpeed(0);
-			setX(world.width - width);
+			setX(world.getWidth() - getWidth());
 		}
-		if (getY() >= world.height - height) {
+		if (getY() >= world.getHeight() - getHeight()) {
 			setySpeed(0);
-			setY(world.height - height);
+			setY(world.getHeight() - getHeight());
 		}
 	}
 
