@@ -12,6 +12,9 @@ public abstract class PowerUp extends GameObject implements ICollidableWithGameO
 	protected int color = 255;
 	protected Breakout world;
 
+	/**
+	 * assign powerup to player depending on the kind of powerUp
+	 */
 	public abstract void boost();
 
 	public PowerUp(Breakout world) {
@@ -22,9 +25,12 @@ public abstract class PowerUp extends GameObject implements ICollidableWithGameO
 	public void draw(PGraphics g) {
 		g.fill(color);
 		g.ellipse(getX(), getY(), getWidth(), getHeight());
-		
+
 	}
 
+	/**
+	 * Drop the PowerUp object
+	 */
 	public void drop() {
 		setGravity(0.03f);
 	}
@@ -43,10 +49,9 @@ public abstract class PowerUp extends GameObject implements ICollidableWithGameO
 			if (g instanceof Player) {
 				world.deleteGameObject(this);
 				boost();
-				System.out.println("Player collision");
+
 			}
 		}
 	}
-
 
 }
