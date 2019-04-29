@@ -33,8 +33,7 @@ public class BallBoost extends PowerUp {
 	public BallBoost(int height, int width, Breakout world, powerUp powerUp) {
 		super(world);
 		this.powerUp = powerUp;
-		setHeight(height);
-		setWidth(width);
+
 	}
 
 	@Override

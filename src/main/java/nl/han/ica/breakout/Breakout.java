@@ -2,6 +2,7 @@ package nl.han.ica.breakout;
 
 import java.util.ArrayList;
 
+import nl.han.ica.oopg.dashboard.FPSCounter;
 import nl.han.ica.oopg.engine.GameEngine;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.TextObject;
@@ -36,6 +37,7 @@ public class Breakout extends GameEngine {
 		initializeLevels();
 		initializeTextObjects();
 		gameRunning = true;
+		addGameObject(new FPSCounter(0, height));
 	}
 
 	/**
@@ -166,7 +168,6 @@ public class Breakout extends GameEngine {
 	 * Ends the current level and proceeds to go to the next level
 	 */
 	public void nextLevel() {
-
 		if (gameLevels.indexOf(currentLevel) < gameLevels.size() - 1) {
 			endLevel();
 			currentLevel = gameLevels.get(gameLevels.indexOf(currentLevel) + 1);
@@ -206,8 +207,8 @@ public class Breakout extends GameEngine {
 	 */
 	public void createBall() {
 		final int BALL_DIAMETER = 30;
-		final int BALL_X = (int) (player.getX() + player.getWidth() / 2);
-		final int BALL_Y = (int) (this.getHeight() - player.getHeight() - BALL_DIAMETER / 2);
+		final int BALL_X = 0;
+		final int BALL_Y = 0;
 		ball = new Ball(this, BALL_DIAMETER, BALL_DIAMETER);
 		addGameObject(ball, BALL_X, BALL_Y);
 	}

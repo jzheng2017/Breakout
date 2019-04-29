@@ -19,6 +19,8 @@ public abstract class PowerUp extends GameObject implements ICollidableWithGameO
 
 	public PowerUp(Breakout world) {
 		this.world = world;
+		setHeight(30);
+		setWidth(30);
 	}
 
 	@Override
@@ -49,7 +51,6 @@ public abstract class PowerUp extends GameObject implements ICollidableWithGameO
 			if (g instanceof Player) {
 				world.deleteGameObject(this);
 				boost();
-
 			}
 		}
 	}

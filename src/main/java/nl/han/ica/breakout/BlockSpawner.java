@@ -43,7 +43,7 @@ public class BlockSpawner {
 				health = rnd.nextInt(value) + 1;
 				PowerUp p = null;
 				if (rnd.nextBoolean()) {
-					p = createPowerUp(rnd.nextBoolean());
+					p = createPowerUp();
 					world.addGameObject(p, x + blockWidth / 2, y + blockHeight / 2);
 				}
 
@@ -84,16 +84,19 @@ public class BlockSpawner {
 		this.world.getCurrentLevel().setBlocksLeft(amount);
 	}
 
+	
 	/**
-	 * Returns PowerUp object -> parameter boost with the value true gives
-	 * BallPowerUp, false gives PlayerPowerUp
-	 * 
-	 * @param boost
-	 * @return boost
+	 * Returns random PowerUp Object
+	 * @return PowerUp
 	 */
-	private PowerUp createPowerUp(boolean boost) {
-		return boost ? new BallBoost(30, 30, world, BallBoost.powerUp.getRandomPowerUp())
-				: new PlayerBoost(30, 30, world, PlayerBoost.powerUp.getRandomPowerUp());
+	private PowerUp createPowerUp() {
+		PowerUp[] powerUps = {new BallSpeedBoost(world), 
+							new BallDamageBoost(world),
+							new PlayerLifeBoost(world),
+							new PlayerSpeedBoost(world),
+							new PlayerWidthBoost(world)};
+		
+		return powerUps[rnd.nextInt(powerUps.length)];
 	}
 
 	/**

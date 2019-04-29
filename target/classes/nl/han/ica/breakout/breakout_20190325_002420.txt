@@ -1,0 +1,7 @@
+WARNING - 00:24:20: First conversion pass
+ERROR - 00:24:20: java.net.MalformedURLException: unknown protocol: pathmap
+WARNING - 00:24:38: Convert nl.han.ica.breakout
+WARNING - 00:24:38: First conversion pass
+ERROR - 00:24:38: java.net.MalformedURLException: unknown protocol: pathmap
+WARNING - 00:24:49: First conversion pass
+ERROR - 00:24:49: java.net.MalformedURLException: unknown protocol: pathmap
