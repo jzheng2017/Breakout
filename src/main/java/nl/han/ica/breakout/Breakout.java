@@ -64,7 +64,7 @@ public class Breakout extends GameEngine {
 	 */
 	private void initializeLevels() {
 		gameLevels = new ArrayList<Level>();
-		gameLevels.add(createLevel(this, 2, 2, 1, 3));
+		gameLevels.add(createLevel(this, 4, 4, 1, 3));
 		gameLevels.add(createLevel(this, 5, 5, 2, 5));
 		currentLevel = gameLevels.get(0);
 		initializeBlockSpawner();
@@ -206,8 +206,8 @@ public class Breakout extends GameEngine {
 	 */
 	public void createBall() {
 		final int BALL_DIAMETER = 30;
-		final int BALL_X = (int) (player.getX() + player.getWidth() / 2);
-		final int BALL_Y = (int) (this.getHeight() - player.getHeight() - BALL_DIAMETER / 2);
+		final int BALL_X = 0;
+		final int BALL_Y = 0;
 		ball = new Ball(this, BALL_DIAMETER, BALL_DIAMETER);
 		addGameObject(ball, BALL_X, BALL_Y);
 	}

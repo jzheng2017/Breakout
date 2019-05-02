@@ -23,7 +23,7 @@ public class GameBlock extends Block {
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for (GameObject g : collidedGameObjects) {
-			if (g instanceof Ball) {
+			if (g instanceof Ball && world.getGameState()) {
 				takeDamage(((Ball) g).getDamage());
 				if (isBlockDestroyed()) {
 					destroyBlock();
