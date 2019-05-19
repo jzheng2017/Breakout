@@ -6,7 +6,6 @@ public class PlayerLifeBoost extends PowerUp {
 
 	public PlayerLifeBoost(Breakout world) {
 		super(world);
-
 	}
 
 	@Override

@@ -21,6 +21,7 @@ public abstract class PowerUp extends GameObject implements ICollidableWithGameO
 		this.world = world;
 		setHeight(30);
 		setWidth(30);
+		setVisible(false);
 	}
 
 	@Override
@@ -34,6 +35,7 @@ public abstract class PowerUp extends GameObject implements ICollidableWithGameO
 	 * Drop the PowerUp object
 	 */
 	public void drop() {
+		setVisible(true);
 		setGravity(0.03f);
 	}
 

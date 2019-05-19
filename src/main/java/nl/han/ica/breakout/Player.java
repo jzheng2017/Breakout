@@ -27,7 +27,6 @@ public class Player extends GameObject {
 
 	@Override
 	public void keyPressed(int keyCode, char key) {
-		System.out.println(this.getSpeed());
 		if (keyCode == world.LEFT) {
 			setDirectionSpeed(270, getPlayerSpeed());
 		} else if (keyCode == world.RIGHT) {

@@ -66,7 +66,7 @@ public class Breakout extends GameEngine {
 	 */
 	private void initializeLevels() {
 		gameLevels = new ArrayList<Level>();
-		gameLevels.add(createLevel(this, 2, 2, 1, 3));
+		gameLevels.add(createLevel(this, 7, 7, 1, 3));
 		gameLevels.add(createLevel(this, 5, 5, 2, 5));
 		currentLevel = gameLevels.get(0);
 		initializeBlockSpawner();
